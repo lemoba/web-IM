@@ -16,7 +16,7 @@ class CorsMiddleware implements MiddlewareInterface
             'Access-Control-Allow-Methods' => '*',
             'Access-Control-Allow-Headers' => '*',
         ]);
+
         return $response;
     }
-    
 }

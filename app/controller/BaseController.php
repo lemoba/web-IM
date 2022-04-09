@@ -2,7 +2,7 @@
 
 namespace app\controller;
 
-use App\helper\CodeReponse;
+use App\helper\CodeResponse;
 use support\Request;
 
 class BaseController
@@ -10,8 +10,7 @@ class BaseController
     protected function codeReturn(array $codeReponse, $data, $info = '')
     {
         [$code, $msg] = $codeReponse;
-        $msg = !empty($info) ? $info : $msg;
-        $res = ['code' => $code, 'msg' => $msg];
+        $res = ['code' => $code, 'msg' => $info ?: $msg];
 
         if (!is_null($data)) {
             if (is_array($data)) {
@@ -26,15 +25,15 @@ class BaseController
 
     public function success($data = null)
     {
-        return $this->codeReturn(CodeReponse::SUCCESS, $data);
+        return $this->codeReturn(CodeResponse::SUCCESS, $data);
     }
 
-    public function fail(array $codeResponse = CodeReponse::FAIL, $info = '')
+    public function fail(array $codeResponse = CodeResponse::FAIL, $info = '')
     {
         return $this->codeReturn($codeResponse, null, $info);
     }
 
-    public function message(array $codeResponse = CodeReponse::SUCCESS, $info = '')
+    public function message(array $codeResponse = CodeResponse::SUCCESS, $info = '')
     {
         return $this->codeReturn($codeResponse, null, $info);
     }
