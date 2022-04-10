@@ -1,5 +1,5 @@
 <?php
 
 return [
-    '' => \App\Exceptions\Handler::class,
+    '' => \App\Exception\Handler::class,
 ];

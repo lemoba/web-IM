@@ -3,8 +3,7 @@
 namespace App\Controller;
 
 use App\Helper\CodeResponse;
-use App\Validate\AuthValidate;
-use support\Request;
+use think\Validate;
 
 class BaseController
 {
@@ -39,14 +38,18 @@ class BaseController
         return $this->codeReturn($codeResponse, null, $info);
     }
 
-
-    public function crypt(string $password): string
+    /**
+     * 验证手机号
+     * @param  string  $mobile
+     * @return bool
+     */
+    public function verifyMobile(string $mobile)
     {
-        return password_hash($password, PASSWORD_DEFAULT);
-    }
-
-    public function decrpt(string $input, string $real): bool
-    {
-        return password_verify($input, $real);
+        $regex = '/^(((13[0-9]{1})|(15[0-9]{1})|(16[0-9]{1})|(17[3-8]{1})|(18[0-9]{1})|(19[0-9]{1})|(14[5-7]{1}))+\d{8})$/';
+        $validate = new Validate();
+        $result = $validate->rule('mobile', ['regex' => $regex])->check([
+            'mobile' => $mobile
+        ]);
+        return $result;
     }
 }

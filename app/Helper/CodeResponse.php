@@ -14,9 +14,9 @@ class CodeResponse
     const AUTH_CAPTCHA_DAILY_LIMT = [701, '频繁操作，请明天再试'];
     const AUTH_CAPTCHA_FREQUENCY = [702, '请2分钟后再试'];
     const AUTH_CAPTCHA_UNMATCH = [703, '验证码错误'];
-    const AUTH_NAME_REGISTERED = [704, '用户已注册'];
+    const AUTH_INVALID_PASSWORD = [704, '密码错误'];
     const AUTH_MOBILE_REGISTERED = [705, '该手机号已注册'];
-    const AUTH_MOBILE_UNREGISTERED = [706, '手机号未注册'];
+    const AUTH_MOBILE_UNREGISTERED = [706, '该手机号未注册'];
     const AUTH_INVALID_MOBILE = [707, '手机号格式错误'];
     const AUTH_OPENID_UNACCESS = [708, ''];
     const AUTH_OPENID_BINDED = [709, ''];

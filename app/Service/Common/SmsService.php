@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace App\Services\Common;
+namespace App\Service\Common;
 
-use App\Enums\SmsEnums;
-use App\Exceptions\BusinessException;
+use App\Enum\SmsEnum;
+use App\Exception\BusinessException;
 use App\Helper\CodeResponse;
 use support\Redis;
 
@@ -16,13 +16,13 @@ class SmsService
      * @return int
      * @throws \Exception
      */
-    protected static function setCapchaCode(string $mobile, int $expire = 60 * 3): int
+    protected function setCapchaCode(string $mobile, int $expire = 60 * 3): int
     {
         // 随机生成五位验证码
         // $code = random_int(10000, 99999);
         $code = 12345;
         // 保存手机与验证的映射
-        Redis::SETEX(SmsEnums::REGISTER_CAPTCHA.$mobile, $expire, $code);
+        Redis::SETEX(SmsEnum::REGISTER_CAPTCHA.$mobile, $expire, $code);
         return $code;
     }
 
@@ -32,10 +32,10 @@ class SmsService
      * @param  int  $code
      * @return void
      */
-    public static function sendCaptchaMsg(string $mobile)
+    public function sendCaptchaMsg(string $mobile)
     {
         // 2分钟内只能请求一次
-        $lock = Redis::SET(SmsEnums::REGISTER_CAPTCHA_LOCK.$mobile,
+        $lock = Redis::SET(SmsEnum::REGISTER_CAPTCHA_LOCK.$mobile,
             1,
             'ex',
             120,
@@ -47,7 +47,7 @@ class SmsService
         }
 
         // 每天上限10条
-        $checkSendCount = static::checkMobileSendCaptchaCount($mobile);
+        $checkSendCount = $this->checkMobileSendCaptchaCount($mobile);
 
         if (!$checkSendCount) {
             throw new BusinessException(CodeResponse::AUTH_CAPTCHA_DAILY_LIMT);
@@ -71,10 +71,10 @@ class SmsService
      * @param  string  $mobile
      * @return bool
      */
-    protected static function checkMobileSendCaptchaCount(string $mobile): bool
+    protected function checkMobileSendCaptchaCount(string $mobile): bool
     {
         // 同一个手机号当天只能请求10次
-        $countKey = SmsEnums::REGISTER_CAPTCHA_COUNT.$mobile;
+        $countKey = SmsEnum::REGISTER_CAPTCHA_COUNT.$mobile;
         if (Redis::EXISTS($countKey)) {
             if (Redis::GET($countKey) >= 10) {
                 return false;
@@ -93,9 +93,9 @@ class SmsService
      * @return bool
      * @throws BusinessException
      */
-    public static function checkCaptcha(string $mobile, string $code): bool
+    public function checkCaptcha(string $mobile, string $code): bool
     {
-        $key = SmsEnums::REGISTER_CAPTCHA.$mobile;
+        $key = SmsEnum::REGISTER_CAPTCHA.$mobile;
         $check = $code === Redis::GET($key);
         if ($check) {
             Redis::DEL($key);

@@ -489,21 +489,3 @@ if (!function_exists('envs')) {
         return $env_config[$key] ?? $defalut;
     }
 }
-
-
-if (! function_exists('reloadRoute')) {
-    /**
-     * 加载路由.
-     */
-    function reloadRoute()
-    {
-        $path = base_path() . '/routes';
-        $dirs = scandir($path);
-        foreach ($dirs as $dir) {
-            if ($dir != '.' && $dir != '..') {
-                $routeFilePath = $path . "/{$dir}";
-                require_once $routeFilePath;
-            }
-        }
-    }
-}

@@ -33,7 +33,10 @@
     "illuminate/redis": "^8.83",
     "overtrue/easy-sms": "^2.1",
     "webman/console": "^1.0",
-    "topthink/think-validate": "^2.0"
+    "topthink/think-validate": "^2.0",
+    "tinywan/jwt": "^1.2",
+    "php-di/php-di": "^6.4",
+    "doctrine/annotations": "^1.13"
   },
   "suggest": {
     "ext-event": "For better performance. "
@@ -46,6 +49,12 @@
     "files": [
       "./support/helpers.php"
     ]
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.org"
+    }
   },
   "scripts": {
     "post-package-install": [
