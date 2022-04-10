@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace App\service\Common;
+namespace App\Services\Common;
 
-use App\enum\SmsEnums;
-use App\exception\BusinessException;
-use App\helper\CodeResponse;
+use App\Enums\SmsEnums;
+use App\Exceptions\BusinessException;
+use App\Helper\CodeResponse;
 use support\Redis;
 
 class SmsService
@@ -81,7 +81,7 @@ class SmsService
             }
             Redis::INCR($countKey);
         } else {
-            Redis::SET($countKey, 1);
+            Redis::SET($countKey, 1, 'EX', 3600*24);
         }
         return true;
     }

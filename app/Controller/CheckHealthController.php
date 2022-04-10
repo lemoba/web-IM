@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\controller;
+namespace App\Controller;
 
-use App\helper\CodeResponse;
+use App\Helper\CodeResponse;
 use support\Db;
 use support\Log;
 use support\Redis;

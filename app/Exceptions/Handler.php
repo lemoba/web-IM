@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\exception;
+namespace App\Exceptions;
 
 use Throwable;
 use Webman\Exception\ExceptionHandler;
@@ -21,7 +21,7 @@ class Handler extends ExceptionHandler
         if ($e instanceof BusinessException) {
             return json([
                 'code' => $e->getCode(),
-                'msg' => $e->getMessage()
+                'message' => $e->getMessage()
             ]);
         }
         return parent::render($request, $e);

@@ -408,7 +408,7 @@ function worker_start($process_name, $config)
     $worker->onWorkerStart = function ($worker) use ($config) {
         require_once base_path() . '/support/bootstrap.php';
 
-        foreach ($config['services'] ?? [] as $server) {
+        foreach ($config['Services'] ?? [] as $server) {
             if (!class_exists($server['handler'])) {
                 echo "process error: class {$server['handler']} not exists\r\n";
                 continue;

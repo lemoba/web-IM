@@ -1,5 +1,5 @@
 <?php
-namespace app\middleware;
+namespace app\Middleware;
 
 use Webman\MiddlewareInterface;
 use Webman\Http\Response;

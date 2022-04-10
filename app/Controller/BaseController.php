@@ -1,8 +1,9 @@
 <?php
 
-namespace app\controller;
+namespace App\Controller;
 
-use App\helper\CodeResponse;
+use App\Helper\CodeResponse;
+use App\Validate\AuthValidate;
 use support\Request;
 
 class BaseController
@@ -10,7 +11,7 @@ class BaseController
     protected function codeReturn(array $codeReponse, $data, $info = '')
     {
         [$code, $msg] = $codeReponse;
-        $res = ['code' => $code, 'msg' => $info ?: $msg];
+        $res = ['code' => $code, 'message' => $info ?: $msg];
 
         if (!is_null($data)) {
             if (is_array($data)) {
@@ -36,5 +37,16 @@ class BaseController
     public function message(array $codeResponse = CodeResponse::SUCCESS, $info = '')
     {
         return $this->codeReturn($codeResponse, null, $info);
+    }
+
+
+    public function crypt(string $password): string
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    public function decrpt(string $input, string $real): bool
+    {
+        return password_verify($input, $real);
     }
 }

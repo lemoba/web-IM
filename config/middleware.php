@@ -12,7 +12,7 @@
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-use app\middleware\CorsMiddleware;
+use app\Middleware\CorsMiddleware;
 
 return [
     '' => [

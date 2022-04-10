@@ -32,7 +32,8 @@
     "illuminate/events": "^8.83",
     "illuminate/redis": "^8.83",
     "overtrue/easy-sms": "^2.1",
-    "webman/console": "^1.0"
+    "webman/console": "^1.0",
+    "topthink/think-validate": "^2.0"
   },
   "suggest": {
     "ext-event": "For better performance. "

@@ -1,13 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace App\controller\Common;
+namespace App\Controller\Common;
 
-use app\controller\BaseController;
-use App\enum\SmsEnums;
-use App\helper\CodeResponse;
-use app\model\User;
-use App\service\Common\SmsService;
-use support\Redis;
+use App\Controller\BaseController;
+use App\Helper\CodeResponse;
+use App\Model\User;
+use App\Services\Common\SmsService;
 use support\Request;
 
 class CommonController extends BaseController
@@ -29,7 +27,6 @@ class CommonController extends BaseController
 
         //发送短信
         SmsService::sendCaptchaMsg($mobile);
-
 
         $data = [
             'is_debug' => 1,

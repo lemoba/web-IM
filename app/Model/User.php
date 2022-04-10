@@ -1,6 +1,6 @@
 <?php
 
-namespace app\model;
+namespace App\Model;
 
 use support\Model;
 
