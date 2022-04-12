@@ -25,6 +25,14 @@ class User extends Model
     ];
 
     protected $hidden = [
-        'password'
+        'password',
+        'updated_at',
+        'created_at'
     ];
+
+
+    public function friend()
+    {
+        return $this->belongsTo(Contact::class);
+    }
 }

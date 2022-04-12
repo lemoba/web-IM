@@ -31,4 +31,9 @@ class UserDao extends BaseDao
     {
         return $this->where(['mobile' => $mobile])->exists();
     }
+
+    public function updateUserInfo(array $array, int $uid)
+    {
+        return $this->update(['id' => $uid], $array);
+    }
 }

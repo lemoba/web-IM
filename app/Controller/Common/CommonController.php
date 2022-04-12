@@ -9,6 +9,7 @@ use App\Model\User;
 use App\Service\Common\SmsService;
 use DI\Annotation\Inject;
 use support\Request;
+use Tinywan\Storage\Storage;
 
 class CommonController extends BaseController
 {
@@ -24,6 +25,12 @@ class CommonController extends BaseController
      */
     private $userDao;
 
+    /**
+     * 发送短信验证码
+     * @param  Request  $request
+     * @return \support\Response
+     * @throws \App\Exception\BusinessException
+     */
     public function sendSmsCode(Request $request)
     {
         $mobile = $request->input('mobile');
@@ -52,4 +59,11 @@ class CommonController extends BaseController
         return $this->success($data);
     }
 
+
+    public function uploadAvatar(Request $request)
+    {
+        Storage::config();
+        $res = Storage::uploadFile();
+        return $this->success(['avatar' => $res[0]['url']]);
+    }
 }

@@ -34,4 +34,9 @@ class BaseDao
     {
         return $this->model->select($columns)->where($key)->first();
     }
+
+    public function update(array $key, array $data)
+    {
+        return $this->model->where($key)->update($data);
+    }
 }

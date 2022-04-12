@@ -3,36 +3,56 @@
 use App\Controller\AuthController;
 use App\Controller\CheckHealthController;
 use App\Controller\Common\CommonController;
+use App\Controller\Contact\ContactApplyController;
+use App\Controller\Contact\ContactController;
 use App\Controller\UserController;
 use App\Middleware\AuthMiddleware;
+use App\Service\SocketService;
+use Tinywan\Jwt\JwtToken;
 use Webman\Route;
 
+Route::group('/api/v1', function () {
 
-Route::group('/api/v1/', function () {
-    Route::get('check-health', [CheckHealthController::class, 'check_health']);    // 健康检查
+    // 不需要登录
+    Route::group('/', function () {
+        Route::get('check-health', [CheckHealthController::class, 'check_health']);     // 健康检查
 
-    //公共模块
-    Route::post('common/sms-code', [CommonController::class, 'sendSmsCode']);      // 发送短信验证码
+        //公共模块
+        Route::post('common/sms-code', [CommonController::class, 'sendSmsCode']);       // 发送短信验证码
 
-    //Auth模块
-    Route::group('auth/', function () {
-        Route::post('register', [AuthController::class, 'register']);              // 注册
-        Route::post('login', [AuthController::class, 'login']);                    // 登录
-        Route::post('forget', [AuthController::class, 'forget']);                  // 忘记密码
-        Route::post('logout', [AuthController::class, 'logout']);                  // 退出登录
-        Route::post('refresh-token', [AuthController::class, 'refreshToken']);     // 刷新token
+        // 不需要登录
+        Route::post('auth/register', [AuthController::class, 'register']);              // 注册
+        Route::post('auth/login', [AuthController::class, 'login']);                    // 登录
     });
 
-    // setting模块
-    Route::group('users/', function () {
-        Route::get('setting', [UserController::class, 'setting']);                  // 用户设置
-        Route::get('detail', [UserController::class, 'detail']);                    // 用户详情
+    // 需要登录
+    Route::group('/', function () {
+        // auth模块
+        Route::post('auth/forget', [AuthController::class, 'forget']);                  // 忘记密码
+        Route::post('auth/logout', [AuthController::class, 'logout']);                  // 退出登录
+        Route::post('auth/refresh-token', [AuthController::class, 'refreshToken']);     // 刷新token
+
+        // setting模块
+        Route::get('users/setting', [UserController::class, 'setting']);                // 用户设置
+        Route::get('users/detail', [UserController::class, 'detail']);                  // 用户详情
+        Route::post('users/change/detail', [UserController::class, 'edit']);            // 编辑信息
+
+        // upload模块
+        Route::post('upload/avatar', [CommonController::class, 'uploadAvatar']);        // 上传头像
+
+        // contact模块
+        Route::get('contact/search', [ContactController::class, 'search']);             // 搜索用户
+        Route::get('contact/detail', [ContactController::class, 'detail']);             // 搜索详情
+        Route::get('contact/list', [ContactController::class, 'list']);                 // 好友列表
+        Route::post('contact/apply/create', [ContactApplyController::class, 'create']); // 好友申请
+        // Route::post('contact/apply/unread-num', [ContactApplyController::class, 'unreadNum']);   // 未读消息
+        // Route::post('contact/apply/records', [ContactApplyController::class, 'records']);        // 未读消息
+
     })->middleware([AuthMiddleware::class]);
 });
 
 Route::get('/test', function () {
-    echo date("Y-m-d",strtotime("+1 day"));
-    return json('Y');
+    var_dump(JwtToken::getCurrentId());
 });
 
 Route::fallback(function(){

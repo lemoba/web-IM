@@ -3,7 +3,9 @@
 namespace App\Exception;
 
 use Throwable;
+use Tinywan\Jwt\Exception\JwtRefreshTokenExpiredException;
 use Tinywan\Jwt\Exception\JwtTokenException;
+use Tinywan\Jwt\Exception\JwtTokenExpiredException;
 use Webman\Exception\ExceptionHandler;
 use Webman\Http\Request;
 use Webman\Http\Response;
@@ -26,10 +28,13 @@ class Handler extends ExceptionHandler
             ]);
         }
 
-        if ($e instanceof JwtTokenException) {
+        if ($e instanceof JwtTokenException ||
+            $e instanceof JwtTokenExpiredException ||
+            $e instanceof JwtRefreshTokenExpiredException
+        ) {
             return json([
-                'code' => 401,
-                'message' => 'Unauthorized'
+                'code' => $e->getCode(),
+                'message' => $e->getMessage()
             ]);
         }
         return parent::render($request, $e);

@@ -2,7 +2,17 @@
 
 namespace App\Service;
 
-abstract class BaseService
-{
+use Tinywan\Jwt\JwtToken;
 
+class BaseService
+{
+    /**
+     * 获取uid
+     * @return int
+     */
+    public function uid(): int
+    {
+        return JwtToken::getCurrentId();
+    }
+    // abstract public static function getInstance();
 }

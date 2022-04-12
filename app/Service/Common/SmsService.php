@@ -102,6 +102,7 @@ class SmsService
             return true;
         } else {
             throw new BusinessException(CodeResponse::AUTH_CAPTCHA_UNMATCH);
+            return false;
         }
     }
 }

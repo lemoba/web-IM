@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "40ee575932f3d8eb703e60a016da5858",
+    "content-hash": "54a313b27d55a8a5a4b321c07912d623",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -3440,6 +3440,50 @@
             "time": "2022-03-29T03:10:22+00:00"
         },
         {
+            "name": "tinywan/storage",
+            "version": "v0.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Tinywan/webman-storage.git",
+                "reference": "f59895a1f1709098a964184c41fc8aac80e7dfc8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Tinywan/webman-storage/zipball/f59895a1f1709098a964184c41fc8aac80e7dfc8",
+                "reference": "f59895a1f1709098a964184c41fc8aac80e7dfc8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2",
+                "workerman/webman-framework": "^1.2.1"
+            },
+            "require-dev": {
+                "aliyuncs/oss-sdk-php": "^2.4",
+                "friendsofphp/php-cs-fixer": "^3.6",
+                "phpstan/phpstan": "^1.4",
+                "phpunit/phpunit": "^9.5",
+                "qcloud/cos-sdk-v5": "^2.5",
+                "qiniu/php-sdk": "^7.4",
+                "workerman/webman": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tinywan\\Storage\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "webman storage plugin",
+            "support": {
+                "issues": "https://github.com/Tinywan/webman-storage/issues",
+                "source": "https://github.com/Tinywan/webman-storage/tree/v0.2.2"
+            },
+            "time": "2022-04-06T13:19:29+00:00"
+        },
+        {
             "name": "topthink/think-container",
             "version": "v2.0.3",
             "source": {
@@ -3728,6 +3772,88 @@
                 "wiki": "http://www.workerman.net/doc/webman"
             },
             "time": "2022-03-25T02:01:45+00:00"
+        },
+        {
+            "name": "webman/gateway-worker",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webman-php/gateway-worker.git",
+                "reference": "e2ec11afe7a794682612f29420f3b9c63eed9a3b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webman-php/gateway-worker/zipball/e2ec11afe7a794682612f29420f3b9c63eed9a3b",
+                "reference": "e2ec11afe7a794682612f29420f3b9c63eed9a3b",
+                "shasum": ""
+            },
+            "require": {
+                "workerman/gateway-worker": "^3.0",
+                "workerman/webman-framework": "^1.2.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Webman\\GatewayWorker\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "support": {
+                "issues": "https://github.com/webman-php/gateway-worker/issues",
+                "source": "https://github.com/webman-php/gateway-worker/tree/v1.0.1"
+            },
+            "time": "2022-02-15T07:03:05+00:00"
+        },
+        {
+            "name": "workerman/gateway-worker",
+            "version": "v3.0.22",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/walkor/GatewayWorker.git",
+                "reference": "a615036c482d11f68b693998575e804752ef9068"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/walkor/GatewayWorker/zipball/a615036c482d11f68b693998575e804752ef9068",
+                "reference": "a615036c482d11f68b693998575e804752ef9068",
+                "shasum": ""
+            },
+            "require": {
+                "workerman/workerman": ">=3.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GatewayWorker\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "homepage": "http://www.workerman.net",
+            "keywords": [
+                "communication",
+                "distributed"
+            ],
+            "support": {
+                "issues": "https://github.com/walkor/GatewayWorker/issues",
+                "source": "https://github.com/walkor/GatewayWorker/tree/v3.0.22"
+            },
+            "funding": [
+                {
+                    "url": "https://opencollective.com/walkor",
+                    "type": "open_collective"
+                },
+                {
+                    "url": "https://www.patreon.com/walkor",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2021-12-23T13:13:09+00:00"
         },
         {
             "name": "workerman/webman-framework",

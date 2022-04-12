@@ -105,4 +105,6 @@ if (\DIRECTORY_SEPARATOR === '/') {
     }
 }
 
+// define('SERVER_RUN_ID', uniqid());
+
 Worker::runAll();

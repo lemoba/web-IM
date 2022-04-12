@@ -4,17 +4,11 @@ namespace App\Traits;
 
 trait Singleton
 {
-    protected static $instance;
-
-    private function __construct(){}
-
-    private function __clone(){}
-
-    public static function getInstance(...$args)
+    /**
+     * @return static
+     */
+    public static function getInstance()
     {
-        if (self::$instance instanceof self) {
-            self::$instance = new static(...$args);
-        }
-        return self::$instance;
+        return Di(static::class);
     }
 }

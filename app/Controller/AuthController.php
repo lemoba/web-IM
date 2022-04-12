@@ -8,7 +8,7 @@ use App\Service\Common\SmsService;
 use App\Service\UserService;
 use App\Validate\AuthValidate;
 use DI\Annotation\Inject;
-use support\exception\BusinessException;
+use Shopwwi\WebmanAuth\Facade\Auth;
 use support\Request;
 use Tinywan\Jwt\JwtToken;
 
@@ -48,9 +48,8 @@ class AuthController extends BaseController
             return $this->fail(CodeResponse::PARMA_ILLEGAL, $validate->getError());
         }
 
-
         // 检查验证码
-        $this->smsSerivce->checkCaptcha($input['mobile'], $input['sms_code']);
+        $this->smsSerivce->checkCaptcha($input['mobile'], (string)$input['sms_code']);
 
         // 保存信息
         $this->userService->register($input);
@@ -87,18 +86,22 @@ class AuthController extends BaseController
 
 
         // 生成jwt
-        $token = JwtToken::generateToken([
+        $data = JwtToken::generateToken([
             'id' => $user->id,
+            'email' => $user->email,
             'nickname' => $user->nickname,
-            'avatar' => $user->avatar
         ]);
-        return $this->success($token);
+
+        // 保存到redis
+        $this->userService->saveToken($data, $user->id);
+        $data['userInfo'] = $user;
+        return $this->success($data);
     }
 
 
     public function logout()
     {
-
+        return $this->failOrSuccess($this->userService->logout());
     }
 
     public function forget()

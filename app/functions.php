@@ -1,5 +1,7 @@
 <?php
 
+use support\Container;
+
 if (! function_exists('reloadRoute')) {
     /**
      * 加载路由.
@@ -15,6 +17,12 @@ if (! function_exists('reloadRoute')) {
             }
         }
     }
+}
+
+if (!function_exists('Di')) {
+   function Di($className) {
+        return Container::get($className);
+   }
 }
 
 /*
