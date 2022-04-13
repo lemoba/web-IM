@@ -27,13 +27,19 @@ class WebSocketController
             Log::error('unauthorized');
             Gateway::closeClient($fd);
         }
-        //echo "用户连接信息: user_id:{$uid} | fd: {$fd} 时间:" . date('Y-m-d H:h:i') .PHP_EOL;
+        echo "用户连接信息: user_id:{$uid} | fd: {$fd} 时间:" . date('Y-m-d H:h:i') .PHP_EOL;
         SocketService::getInstance()->bind($fd, $uid);
     }
 
     public static function onMessage($fd, $message)
     {
-        Gateway::sendToClient($fd, "receive message $message");
+        $data = json_decode($message, true);
+        $data['time'] = time();
+        $reciveFd = SocketService::getInstance()->findFd($data['receiver_id']);
+        if ($reciveFd) {
+            Gateway::sendToClient($reciveFd, json_encode($data));
+        }
+        echo "sendFd: {$fd} - reciveFd: {$reciveFd} - message: {$data['message']}".PHP_EOL;
     }
 
     public static function onClose($fd)

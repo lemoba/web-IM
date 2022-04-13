@@ -30,6 +30,7 @@ class UserController extends BaseController
         $userInfo = $this->user();
 
         $data = [
+            'id'       => $userInfo->id,
             'mobile'   => $userInfo->mobile,
             'nickname' => $userInfo->nickname,
             'avatar'   => $userInfo->avatar,

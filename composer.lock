@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "54a313b27d55a8a5a4b321c07912d623",
+    "content-hash": "0d784f0cd1f9bd09d23c6d29285fe08b",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -3485,23 +3485,17 @@
         },
         {
             "name": "topthink/think-container",
-            "version": "v2.0.3",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/top-think/think-container.git",
-                "reference": "8ae724dccc8f6241229db29ef757a22934b76800"
+                "reference": "15c6d5813367c7c0cf501c7c043f48a6f359375c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/top-think/think-container/zipball/8ae724dccc8f6241229db29ef757a22934b76800",
-                "reference": "8ae724dccc8f6241229db29ef757a22934b76800",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "url": "https://api.github.com/repos/top-think/think-container/zipball/15c6d5813367c7c0cf501c7c043f48a6f359375c",
+                "reference": "15c6d5813367c7c0cf501c7c043f48a6f359375c",
+                "shasum": ""
             },
             "require": {
                 "php": ">=7.1.0",
@@ -3531,9 +3525,9 @@
             "description": "PHP Container & Facade Manager",
             "support": {
                 "issues": "https://github.com/top-think/think-container/issues",
-                "source": "https://github.com/top-think/think-container/tree/v2.0.3"
+                "source": "https://github.com/top-think/think-container/tree/v2.0.4"
             },
-            "time": "2019-07-10T09:09:11+00:00"
+            "time": "2022-01-11T06:28:39+00:00"
         },
         {
             "name": "topthink/think-helper",
@@ -3547,13 +3541,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/top-think/think-helper/zipball/769acbe50a4274327162f9c68ec2e89a38eb2aff",
                 "reference": "769acbe50a4274327162f9c68ec2e89a38eb2aff",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "shasum": ""
             },
             "require": {
                 "php": ">=7.1.0"
@@ -3599,13 +3587,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/top-think/think-validate/zipball/857f9bffc1a09a41e3969a19726cb04315848f0f",
                 "reference": "857f9bffc1a09a41e3969a19726cb04315848f0f",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "shasum": ""
             },
             "require": {
                 "php": ">=7.1.0",

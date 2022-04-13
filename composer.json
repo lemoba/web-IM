@@ -33,12 +33,12 @@
     "illuminate/redis": "^8.83",
     "overtrue/easy-sms": "^2.1",
     "webman/console": "^1.0",
-    "topthink/think-validate": "^2.0",
     "php-di/php-di": "^6.4",
     "doctrine/annotations": "^1.13",
     "tinywan/storage": "^0.2.2",
     "tinywan/jwt": "^1.2",
-    "webman/gateway-worker": "^1.0"
+    "webman/gateway-worker": "^1.0",
+    "topthink/think-validate": "^2.0"
   },
   "suggest": {
     "ext-event": "For better performance. "

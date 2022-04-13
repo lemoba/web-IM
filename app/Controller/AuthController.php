@@ -94,7 +94,6 @@ class AuthController extends BaseController
 
         // 保存到redis
         $this->userService->saveToken($data, $user->id);
-        $data['userInfo'] = $user;
         return $this->success($data);
     }
 

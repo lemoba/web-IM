@@ -5,6 +5,7 @@ use App\Controller\CheckHealthController;
 use App\Controller\Common\CommonController;
 use App\Controller\Contact\ContactApplyController;
 use App\Controller\Contact\ContactController;
+use App\Controller\Talk\TalkController;
 use App\Controller\UserController;
 use App\Middleware\AuthMiddleware;
 use App\Service\SocketService;
@@ -47,6 +48,9 @@ Route::group('/api/v1', function () {
         Route::post('contact/apply/create', [ContactApplyController::class, 'create']); // 好友申请
         // Route::post('contact/apply/unread-num', [ContactApplyController::class, 'unreadNum']);   // 未读消息
         // Route::post('contact/apply/records', [ContactApplyController::class, 'records']);        // 未读消息
+
+        Route::post('talk/create', [TalkController::class, 'create']);                  // 创建聊天
+        Route::get('talk/talk_list', [TalkController::class, 'talkList']);            // 聊天列表
 
     })->middleware([AuthMiddleware::class]);
 });

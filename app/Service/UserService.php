@@ -69,7 +69,7 @@ class UserService extends BaseService
      */
     public function logout(): bool
     {
-        $uid = $this->getUid();
+        $uid = $this->uid();
         return (bool)Redis::del(CommEnum::ACCESS_TOKEN.$uid);
     }
 
