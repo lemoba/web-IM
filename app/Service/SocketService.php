@@ -34,6 +34,7 @@ class SocketService extends BaseService
     public function unbind(string $fd)
     {
         $uid = $this->findUid($fd);
+        echo "用户下线信息: user_id:{$uid} | fd: {$fd} 时间:" . date('Y-m-d H:h:i') .PHP_EOL;
         $this->socketFdBindUser->unbind($fd);
         $this->socketUserBindFd->unbind($fd, $uid);
     }

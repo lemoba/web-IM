@@ -30,13 +30,15 @@ class UserController extends BaseController
         $userInfo = $this->user();
 
         $data = [
-            'id'       => $userInfo->id,
-            'mobile'   => $userInfo->mobile,
-            'nickname' => $userInfo->nickname,
-            'avatar'   => $userInfo->avatar,
-            'motto'    => $userInfo->motto,
-            'email'    => $userInfo->email,
-            'gender'   => $userInfo->gender,
+            'id'        => $userInfo->id,
+            'mobile'    => $userInfo->mobile,
+            'nickname'  => $userInfo->nickname,
+            'avatar'    => $userInfo->avatar,
+            'motto'     => $userInfo->motto,
+            'email'     => $userInfo->email,
+            'gender'    => $userInfo->gender,
+            'city'      => $userInfo->city,
+            'website'   => $userInfo->website
         ];
         return $this->success($data);
     }

@@ -4,7 +4,8 @@ namespace App\Controller\Talk;
 
 use App\Controller\BaseController;
 use App\Helper\CodeResponse;
-use App\Service\TalkService;
+use App\Service\Talk\TalkRecordService;
+use App\Service\Talk\TalkService;
 use support\Request;
 use think\facade\Validate;
 

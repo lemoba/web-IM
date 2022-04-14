@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\SocketService;
+use App\Service\Talk\TalkRecordService;
 use App\Service\UserService;
 use GatewayWorker\Lib\Gateway;
 use support\Log;
@@ -35,16 +36,16 @@ class WebSocketController
     {
         $data = json_decode($message, true);
         $data['time'] = time();
-        $reciveFd = SocketService::getInstance()->findFd($data['receiver_id']);
-        if ($reciveFd) {
-            Gateway::sendToClient($reciveFd, json_encode($data));
+        $receiveFd = SocketService::getInstance()->findFd($data['receiver_id']); // 获取fd
+        TalkRecordService::getInstance()->saveMessage($data); // 保存消息
+        if ($receiveFd) {
+            Gateway::sendToClient($receiveFd, json_encode($data));
         }
-        echo "sendFd: {$fd} - reciveFd: {$reciveFd} - message: {$data['message']}".PHP_EOL;
+        echo "sendFd: {$fd} - reciveFd: {$receiveFd} - message: {$data['content']}".PHP_EOL;
     }
 
     public static function onClose($fd)
     {
         SocketService::getInstance()->unbind($fd);
-        //echo "用户下线: fd: {$fd} 时间:" . date('Y-m-d H:h:i') .PHP_EOL;
     }
 }

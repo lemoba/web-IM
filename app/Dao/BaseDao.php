@@ -30,13 +30,18 @@ class BaseDao
         throw new \Exception("Uncaught Error: Call to undefined method {$method}");
     }
 
-    public function first(array $key, array $columns = ['*'])
+    public function first(array $where, array $columns = ['*'])
     {
-        return $this->model->select($columns)->where($key)->first();
+        return $this->model->select($columns)->where($where)->first();
     }
 
-    public function update(array $key, array $data)
+    public function update(array $where, array $data)
     {
-        return $this->model->where($key)->update($data);
+        return $this->model->where($where)->update($data);
+    }
+
+    public function getAll(array $where, int $limit = 100)
+    {
+        return $this->model->where($where)->limit($limit)->get();
     }
 }
